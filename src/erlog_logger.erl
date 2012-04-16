@@ -202,7 +202,7 @@ gen_log_name(#erlog_entry{proc_name = Name} = Entry, Headers, Body, Footers) ->
     gen_log_time(Entry, NewHeaders, Body, Footers).
 
 gen_log_time(#erlog_entry{log_time = Time} = Entry, Headers, Body, Footers) ->
-    NowStr = timelib:to_string(Time),
+    NowStr = erlog_timelib:to_string(Time),
     NewHeaders = [io_lib:format(?TIME_FMT, [NowStr]) | Headers],
     gen_log_msg(Entry, NewHeaders, Body, Footers).
 

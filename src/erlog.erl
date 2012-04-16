@@ -190,7 +190,7 @@ publish(Lvl, Msg, Vars, Ctx) ->
                          pid = self(),
                          proc_cat = get(erlog_category),
                          proc_name = get(erlog_name),
-                         log_time = timelib:now(),
+                         log_time = erlog_timelib:now(),
                          msg = Msg,
                          vars = Vars,
                          ctx = Ctx},
@@ -359,7 +359,7 @@ parse_expression({'receive', Line, Clauses, To, ToExpr}, Ctx0) ->
                 {none, Ctx2} ->
                     {{'receive', Line, NewClauses}, Ctx2};
                 {NewToExpr, Ctx2} ->
-                    {{'reveive', Line, NewClauses, To, NewToExpr}, Ctx2}
+                    {{'receive', Line, NewClauses, To, NewToExpr}, Ctx2}
             end
     end;
 parse_expression({'try', Line, Try, Case, Catch, After}, Ctx) ->
